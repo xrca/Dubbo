@@ -1,0 +1,17 @@
+server:
+  port: 9999
+
+
+dubbo:
+  application:
+    name: consumer
+    organization: xrca
+  protocol:
+    name: dubbo
+    port: 12345
+  registry:
+    #address: multicast://224.0.0.1:4666?unicast=fasle
+    #address: zookeeper://192.168.0.200:2181
+    address: redis://192.168.0.200:6379
+    file: C:/Users/fishs/workspace/IdeaProjects/dubbo.cache
+    #address: 127.0.0.1:12345
