@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HiController {
     //loadbalance = "roundrobin",
     //, mock = "return '系统繁忙，请稍后再试'"
-    @DubboReference(version = "1.1", methods = {@Method(name = "sayHi", retries = 4, timeout = 2000)},
-            mock = "force:return '系统繁忙！'")
+    // mock = "force:return '系统繁忙！'"
+    // loadbalance = "roundrobin"
+    @DubboReference(version = "1.0", methods = {@Method(name = "sayHi", timeout = 2000)}, cluster = "failback",
+        loadbalance = "consistenthash")
     private GreetingService greetingService;
 
     @RequestMapping("hi")

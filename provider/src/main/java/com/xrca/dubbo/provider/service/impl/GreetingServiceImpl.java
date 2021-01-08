@@ -2,6 +2,8 @@ package com.xrca.dubbo.provider.service.impl;
 
 import com.xrca.dubbo.service.GreetingService;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 /**
  * @author xrca
@@ -10,9 +12,12 @@ import org.apache.dubbo.config.annotation.DubboService;
  **/
 @DubboService(version = "1.0")
 public class GreetingServiceImpl implements GreetingService {
+    @Autowired
+    private Environment environment;
+
     @Override
     public String sayHi(String name) {
-        return "hi " + name + " !";
+        return "hi " + name + " ! " + environment.getProperty("server.port");
     }
 
     @Override
